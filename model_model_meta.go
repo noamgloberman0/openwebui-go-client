@@ -33,7 +33,7 @@ type _ModelMeta ModelMeta
 // will change when the set of required properties is changed
 func NewModelMeta() *ModelMeta {
 	this := ModelMeta{}
-	var profileImageUrl ProfileImageUrl = /static/favicon.png
+	var profileImageUrl ProfileImageUrl = ProfileImageUrl{String: PtrString("/static/favicon.png")}
 	this.ProfileImageUrl = &profileImageUrl
 	return &this
 }
@@ -43,7 +43,7 @@ func NewModelMeta() *ModelMeta {
 // but it doesn't guarantee that properties required by API are set
 func NewModelMetaWithDefaults() *ModelMeta {
 	this := ModelMeta{}
-	var profileImageUrl ProfileImageUrl = /static/favicon.png
+	var profileImageUrl ProfileImageUrl = ProfileImageUrl{String: PtrString("/static/favicon.png")}
 	this.ProfileImageUrl = &profileImageUrl
 	return &this
 }
