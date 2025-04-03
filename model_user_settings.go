@@ -11,7 +11,7 @@ API version: 0.1.0
 package openapi
 
 import (
-	"encoding/json"
+    "encoding/json"
 )
 
 // checks if the UserSettings type satisfies the MappedNullable interface at compile time
@@ -19,8 +19,8 @@ var _ MappedNullable = &UserSettings{}
 
 // UserSettings struct for UserSettings
 type UserSettings struct {
-	Ui *Ui `json:"ui,omitempty"`
-	AdditionalProperties map[string]interface{}
+    Ui                 *Ui                       `json:"ui,omitempty"`
+    AdditionalProperties map[string]interface{} `json:"-"` // This is needed to correctly handle additional properties
 }
 
 type _UserSettings UserSettings
@@ -30,130 +30,128 @@ type _UserSettings UserSettings
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 func NewUserSettings() *UserSettings {
-	this := UserSettings{}
-	var ui Ui = {}
-	this.Ui = &ui
-	return &this
+    this := UserSettings{}
+    ui := Ui{} // Initialize ui as an empty Ui struct
+    this.Ui = &ui
+    return &this
 }
 
 // NewUserSettingsWithDefaults instantiates a new UserSettings object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 func NewUserSettingsWithDefaults() *UserSettings {
-	this := UserSettings{}
-	var ui Ui = {}
-	this.Ui = &ui
-	return &this
+    this := UserSettings{}
+    ui := Ui{} // Initialize ui as an empty Ui struct
+    this.Ui = &ui
+    return &this
 }
 
 // GetUi returns the Ui field value if set, zero value otherwise.
 func (o *UserSettings) GetUi() Ui {
-	if o == nil || IsNil(o.Ui) {
-		var ret Ui
-		return ret
-	}
-	return *o.Ui
+    if o == nil || IsNil(o.Ui) {
+        var ret Ui
+        return ret
+    }
+    return *o.Ui
 }
 
 // GetUiOk returns a tuple with the Ui field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSettings) GetUiOk() (*Ui, bool) {
-	if o == nil || IsNil(o.Ui) {
-		return nil, false
-	}
-	return o.Ui, true
+    if o == nil || IsNil(o.Ui) {
+        return nil, false
+    }
+    return o.Ui, true
 }
 
 // HasUi returns a boolean if a field has been set.
 func (o *UserSettings) HasUi() bool {
-	if o != nil && !IsNil(o.Ui) {
-		return true
-	}
+    if o != nil && !IsNil(o.Ui) {
+        return true
+    }
 
-	return false
+    return false
 }
 
 // SetUi gets a reference to the given Ui and assigns it to the Ui field.
 func (o *UserSettings) SetUi(v Ui) {
-	o.Ui = &v
+    o.Ui = &v
 }
 
 func (o UserSettings) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
+    toSerialize, err := o.ToMap()
+    if err != nil {
+        return []byte{}, err
+    }
+    return json.Marshal(toSerialize)
 }
 
 func (o UserSettings) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Ui) {
-		toSerialize["ui"] = o.Ui
-	}
+    toSerialize := map[string]interface{}{}
+    if !IsNil(o.Ui) {
+        toSerialize["ui"] = o.Ui
+    }
 
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
+    for key, value := range o.AdditionalProperties {
+        toSerialize[key] = value
+    }
 
-	return toSerialize, nil
+    return toSerialize, nil
 }
 
 func (o *UserSettings) UnmarshalJSON(data []byte) (err error) {
-	varUserSettings := _UserSettings{}
+    varUserSettings := _UserSettings{}
 
-	err = json.Unmarshal(data, &varUserSettings)
+    err = json.Unmarshal(data, &varUserSettings)
 
-	if err != nil {
-		return err
-	}
+    if err != nil {
+        return err
+    }
 
-	*o = UserSettings(varUserSettings)
+    *o = UserSettings(varUserSettings)
 
-	additionalProperties := make(map[string]interface{})
+    additionalProperties := make(map[string]interface{})
 
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "ui")
-		o.AdditionalProperties = additionalProperties
-	}
+    if err = json.Unmarshal(data, &additionalProperties); err == nil {
+        delete(additionalProperties, "ui")
+        o.AdditionalProperties = additionalProperties
+    }
 
-	return err
+    return err
 }
 
 type NullableUserSettings struct {
-	value *UserSettings
-	isSet bool
+    value *UserSettings
+    isSet bool
 }
 
 func (v NullableUserSettings) Get() *UserSettings {
-	return v.value
+    return v.value
 }
 
 func (v *NullableUserSettings) Set(val *UserSettings) {
-	v.value = val
-	v.isSet = true
+    v.value = val
+    v.isSet = true
 }
 
 func (v NullableUserSettings) IsSet() bool {
-	return v.isSet
+    return v.isSet
 }
 
 func (v *NullableUserSettings) Unset() {
-	v.value = nil
-	v.isSet = false
+    v.value = nil
+    v.isSet = false
 }
 
 func NewNullableUserSettings(val *UserSettings) *NullableUserSettings {
-	return &NullableUserSettings{value: val, isSet: true}
+    return &NullableUserSettings{value: val, isSet: true}
 }
 
 func (v NullableUserSettings) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+    return json.Marshal(v.value)
 }
 
 func (v *NullableUserSettings) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
+    v.isSet = true
+    return json.Unmarshal(src, &v.value)
 }
-
-
